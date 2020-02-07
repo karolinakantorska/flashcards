@@ -61,8 +61,22 @@ function App() {
             fontWeight: 'bold',
           },
         }}
+
       >
-        <Stack.Screen name="Home" component={HomeScreen} options={{ title: 'Decks' }}/>
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{
+            title: 'Decks',
+            headerRight: () => (
+            <Button
+              onPress={() => alert('This is a button!')}
+              title="Info"
+              color="#fff"
+            />
+          ),
+           }}
+        />
         <Stack.Screen name="Details" component={DetailsScreen} options={({ route }) => ({ title: route.params.name })}/>
       </Stack.Navigator>
 
