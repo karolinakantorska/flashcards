@@ -41,7 +41,6 @@ function DetailsScreen({ route, navigation }) {
   );
 }
 
-
 const Stack = createStackNavigator();
 
 function App() {
@@ -49,7 +48,7 @@ function App() {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home" component={HomeScreen} options={{ title: 'Decks' }}/>
-        <Stack.Screen name="Details" component={DetailsScreen} />
+        <Stack.Screen name="Details" component={DetailsScreen} options={({ route }) => ({ title: route.params.name })}/>
       </Stack.Navigator>
 
     </NavigationContainer>
