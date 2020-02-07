@@ -1,32 +1,46 @@
-import React from 'react'
-import { View, Text } from 'react-native'
-import { createAppContainer } from 'react-navigation'
-import { createStackNavigator } from 'react-navigation-stack'
-// import DeckListView from './components/DeckListView'
+// import 'react-native-gesture-handler'
+import * as React from 'react';
+import { View, Text, Button } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
-// export default function App () {
-//   return (
-//       <View>
-//         <Text>Open up App.js to start working on your app!</Text>
-//         <DeckListView />
-//       </View>
-//   )
-// }
-
-class HomeScreen extends React.Component {
-  render() {
-    return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Home Screen</Text>
-      </View>
-    );
-  }
+function HomeScreen({ navigation }) {
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>Home Screen</Text>
+      <Button
+        title="Go to Details"
+        onPress={() => navigation.navigate('Details')}
+      />
+    </View>
+  );
+}
+function DetailsScreen({ navigation }) {
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>Details Screen</Text>
+        <Button
+          title="Go to Details... again"
+          onPress={() => navigation.navigate('Details')}
+        />
+        <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
+        <Button title="Go back" onPress={() => navigation.goBack()} />
+    </View>
+  );
 }
 
-const AppNavigator = createStackNavigator({
-  Home: {
-    screen: HomeScreen,
-  },
-});
+const Stack = createStackNavigator();
 
-export default createAppContainer(AppNavigator);
+function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={HomeScreen} options={{ title: 'Decks' }}/>
+        <Stack.Screen name="Details" component={DetailsScreen} />
+      </Stack.Navigator>
+
+    </NavigationContainer>
+  );
+}
+
+export default App;
