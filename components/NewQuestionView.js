@@ -1,12 +1,23 @@
 //import React from 'react'
 import React, { Component } from "react"
-import { View, StyleSheet, Text } from 'react-native'
+import { View, StyleSheet, Text, Button } from 'react-native'
+
+function SubmittBtn () {
+  return (
+    <Button
+      title="Submitt"
+
+      />
+  )
+}
 
 class NewQuestionView extends Component {
   render () {
     return (
       <View>
-        <Text>New Question View</Text>
+        <Text>Add Question</Text>
+        <Text>Add Answer</Text>
+        <SubmittBtn />
       </View>
     )
   }

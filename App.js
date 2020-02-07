@@ -1,83 +1,133 @@
 // import 'react-native-gesture-handler'
-import * as React from 'react';
-import { View, Text, Button } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import * as React from 'react'
+import { View, Text, Button, TouchableOpacity } from 'react-native'
+import { NavigationContainer } from '@react-navigation/native'
+import { createStackNavigator } from '@react-navigation/stack'
+import NewDeckView from './components/NewDeckView'
+import NewQuestionView from './components/NewQuestionView'
+import DeckListView from './components/DeckListView'
+import IndividualDeckComponent from './components/IndividualDeckComponent'
+import QuizView from './components/QuizView'
 
 function HomeScreen({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Home Screen</Text>
-        <Button
-          title="Go to Details"
-          onPress={() => {
-            navigation.navigate('Details', {
-              itemId: 86,
-              otherParam: 'anything you want here',
-            });
-          }}
-        />
+      <TouchableOpacity onPress={() => navigation.navigate('Deck')}>
+        <DeckListView
+          style={{ backgroundColor: '#f8ffe6', borderStyle: 'solid' }}
+          />
+      </TouchableOpacity>
+      <Button
+        title="Add Deck"
+        onPress={() => navigation.navigate('AddDeck')}
+      />
+      <Button
+        title="Delete Deck"
+      />
     </View>
   );
 }
-function DetailsScreen({ route, navigation }) {
-  const { itemId } = route.params;
-  const { otherParam } = route.params;
+function AddDeck({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Details Screen</Text>
-      <Text>itemId: {JSON.stringify(itemId)}</Text>
-      <Text>otherParam: {JSON.stringify(otherParam)}</Text>
-      <Button
-        title="Go to Details... again"
-        onPress={() => navigation.push('Details', {
-          itemId: Math.floor(Math.random() * 100),
-        })
-        }
-      />
-      <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
-      <Button title="Go back" onPress={() => navigation.goBack()} />
-      <Button
-        title="Update the title"
-        onPress={() => navigation.setOptions({ title: 'Updated!' })}
-/>
+      <NewDeckView />
     </View>
   );
+}
+function AddQuestion({ navigation }) {
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <NewQuestionView />
+    </View>
+  );
+}
+function Deck({ navigation }) {
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <IndividualDeckComponent />
+    </View>
+  );
+}
+function Quiz({ navigation }) {
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <QuizView />
+    </View>
+  );
+}
+
+function HomeButton({ navigation }) {
+  return <Button
+    onPress={() => navigation.navigate('Home')}
+    title="Home"
+    color="#394d00"
+  />
 }
 
 const Stack = createStackNavigator();
 
-function App() {
+function App( ) {
   return (
     <NavigationContainer>
       <Stack.Navigator
         initialRouteName="Home"
         screenOptions={{
           headerStyle: {
-            backgroundColor: '#f4511e',
+            backgroundColor: '#394d00',
           },
           headerTintColor: '#fff',
           headerTitleStyle: {
             fontWeight: 'bold',
           },
         }}
-
       >
         <Stack.Screen
           name="Home"
           component={HomeScreen}
           options={{
             title: 'Decks',
-            headerRight: () => (
-            <Button
-              onPress={() => alert('This is a button!')}
-              title="Info"
-              color="#fff"
-            />
-          ),
            }}
         />
-        <Stack.Screen name="Details" component={DetailsScreen} options={({ route }) => ({ title: route.params.name })}/>
+      <Stack.Screen
+        name= 'AddDeck'
+        component= {AddDeck}
+        options={{
+          title: 'Add New Deck',
+          headerRight: () => (
+          <HomeButton />
+        ),
+        }}
+      />
+      <Stack.Screen
+        name= 'AddQuestion'
+        component= {AddQuestion}
+        options={{
+          title: 'Add New Question',
+          headerRight: () => (
+          <HomeButton />
+        ),
+        }}
+      />
+      <Stack.Screen
+        name= 'Deck'
+        component= {Deck}
+        options={{
+          title: 'Deck',
+          headerRight: () => (
+          <HomeButton />
+        ),
+        }}
+      />
+      <Stack.Screen
+        name= 'Quiz'
+        component= {Quiz}
+        options={{
+          title: 'Quiz',
+          headerRight: () => (
+          <HomeButton />
+        ),
+        }}
+      />
       </Stack.Navigator>
 
     </NavigationContainer>
