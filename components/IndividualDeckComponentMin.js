@@ -1,26 +1,15 @@
+//import React from 'react'
 import React, { Component } from "react"
-import { View, StyleSheet, Text, Button } from 'react-native'
-import { connect } from "react-redux";
+import { View, StyleSheet, Text, Button, TouchableOpacity } from 'react-native'
 
 
-class IndividualDeckComponentMin extends Component {
-  render () {
-    const { id, one } = this.props
+export default function IndividualDeckComponentMin ({id}) {
     return (
       <View>
-        <Text>{id}</Text>
-        <Text>{one}</Text>
+        <TouchableOpacity>
+          <Text>Deck Title</Text>
+          <Text>{ id }</Text>
+        </TouchableOpacity>
       </View>
     )
   }
-  }
-
-  function mapStateToProps(state, id) {
-    const ID = props.match.params.id.trim()
-    const one = state[ID].questions.length
-    return {
-      one
-    }
-  }
-
-export default connect(mapStateToProps)(IndividualDeckComponentMin)
