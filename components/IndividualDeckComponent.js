@@ -5,6 +5,7 @@ import { useNavigation } from '@react-navigation/native'
 
 function AddQuestionBtn () {
   const navigation = useNavigation();
+
   return (
     <Button
       title="Add Question"
@@ -26,7 +27,7 @@ class IndividualDeckComponent extends Component {
   render () {
     return (
       <View>
-        <Text>Deck Title</Text>
+
         <Text>3 questions</Text>
         <AddQuestionBtn />
         <StartQuizBtn />

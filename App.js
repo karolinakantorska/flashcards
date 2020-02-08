@@ -3,11 +3,18 @@ import * as React from 'react'
 import { View, Text, Button, TouchableOpacity } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
+
+import { createStore } from "redux";
+import { Provider } from "react-redux";
+import reducer from "./reducers";
+
 import NewDeckView from './components/NewDeckView'
 import NewQuestionView from './components/NewQuestionView'
 import DeckListView from './components/DeckListView'
 import IndividualDeckComponent from './components/IndividualDeckComponent'
 import QuizView from './components/QuizView'
+
+import { getDecks } from './utils/helpers'
 
 function HomeScreen({ navigation }) {
   return (
@@ -66,72 +73,82 @@ function HomeButton({ navigation }) {
 
 const Stack = createStackNavigator();
 
-function App( ) {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName="Home"
-        screenOptions={{
-          headerStyle: {
-            backgroundColor: '#394d00',
-          },
-          headerTintColor: '#fff',
-          headerTitleStyle: {
-            fontWeight: 'bold',
-          },
-        }}
-      >
-        <Stack.Screen
-          name="Home"
-          component={HomeScreen}
-          options={{
-            title: 'Decks',
-           }}
-        />
-      <Stack.Screen
-        name= 'AddDeck'
-        component= {AddDeck}
-        options={{
-          title: 'Add New Deck',
-          headerRight: () => (
-          <HomeButton />
-        ),
-        }}
-      />
-      <Stack.Screen
-        name= 'AddQuestion'
-        component= {AddQuestion}
-        options={{
-          title: 'Add New Question',
-          headerRight: () => (
-          <HomeButton />
-        ),
-        }}
-      />
-      <Stack.Screen
-        name= 'Deck'
-        component= {Deck}
-        options={{
-          title: 'Deck',
-          headerRight: () => (
-          <HomeButton />
-        ),
-        }}
-      />
-      <Stack.Screen
-        name= 'Quiz'
-        component= {Quiz}
-        options={{
-          title: 'Quiz',
-          headerRight: () => (
-          <HomeButton />
-        ),
-        }}
-      />
-      </Stack.Navigator>
+class App extends React.Component {
+  componentDidMount() {
+    getDecks ()
+  }
+  render () {
+    return (
+      <Provider store={createStore(reducer)}>
+        <NavigationContainer>
+          <Stack.Navigator
+            initialRouteName="Home"
+            screenOptions={{
+              headerStyle: {
+                backgroundColor: '#394d00',
+              },
+              headerTintColor: '#fff',
+              headerTitleStyle: {
+                fontWeight: 'bold',
+              },
+            }}
+          >
+            <Stack.Screen
+              name="Home"
+              component={HomeScreen}
+              options={{
+                title: 'Decks',
+               }}
+            />
+          <Stack.Screen
+            name= 'AddDeck'
+            component= {AddDeck}
+            options={{
+              title: 'Add New Deck',
+              headerRight: () => (
+              <HomeButton />
+            ),
+            }}
+          />
+          <Stack.Screen
+            name= 'AddQuestion'
+            component= {AddQuestion}
+            options={{
+              title: 'Add New Question',
+              headerRight: () => (
+              <HomeButton />
+            ),
+            }}
+          />
+          <Stack.Screen
+            name= 'Deck'
+            component= {Deck}
+            options={{
+              title: 'Deck',
+              headerRight: () => (
+              <HomeButton />
+            ),
+            }}
+          />
+          <Stack.Screen
+            name= 'Quiz'
+            component= {Quiz}
+            options={{
+              title: 'Quiz',
+              headerRight: () => (
+              <HomeButton />
+            ),
+            }}
+          />
+          </Stack.Navigator>
+        </NavigationContainer>
 
-    </NavigationContainer>
-  );
+      </Provider>
+
+
+    );
+  }
+
 }
 
 export default App;
