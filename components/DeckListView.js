@@ -51,10 +51,3 @@ const styles = StyleSheet.create({
     height: 44,
   },
 })
-
-// <SafeAreaView style={styles.container}>
-//     <FlatList
-//       data= {ID}
-//       renderItem = {({ item }) => <IndividualDeckComponentMin id={item}/>}
-//       />
-// </SafeAreaView>

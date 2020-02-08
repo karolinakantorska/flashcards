@@ -19,11 +19,9 @@ import { getDecks } from './utils/helpers'
 function HomeScreen({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-
-        <DeckListView
-          style={{ backgroundColor: '#f8ffe6', borderStyle: 'solid' }}
-          />
-
+      <DeckListView
+        style={{ backgroundColor: '#f8ffe6', borderStyle: 'solid' }}
+      />
       <Button
         title="Add Deck"
         onPress={() => navigation.navigate('AddDeck')}
@@ -48,17 +46,19 @@ function AddQuestion({ navigation }) {
     </View>
   );
 }
-function Deck({ navigation }) {
+function Deck({ route, navigation }) {
+  const { id } = route.params;
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <IndividualDeckComponent />
+      <IndividualDeckComponent id={id}/>
     </View>
   );
 }
-function Quiz({ navigation }) {
+function Quiz({ route, navigation }) {
+  const { id } = route.params;
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <QuizView />
+      <QuizView id={id}/>
     </View>
   );
 }
