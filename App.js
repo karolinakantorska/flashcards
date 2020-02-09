@@ -13,6 +13,7 @@ import NewQuestionView from './components/NewQuestionView'
 import DeckListView from './components/DeckListView'
 import IndividualDeckComponent from './components/IndividualDeckComponent'
 import QuizView from './components/QuizView'
+import QuizQuestionCard from './components/QuizQuestionCard'
 
 import { getDecks } from './utils/helpers'
 
@@ -59,7 +60,15 @@ function Quiz({ route, navigation }) {
   const { id } = route.params;
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <QuizView id={id}/>
+      <QuizView id={id} />
+    </View>
+  );
+}
+function QuizQuesCard({ route, navigation }) {
+  const { Que } = route.params;
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <QuizQuestionCard Que={Que} />
     </View>
   );
 }

@@ -3,32 +3,24 @@ import { View, StyleSheet, Text, Button } from 'react-native'
 import TextButon from './TextButon'
 import { connect } from "react-redux";
 
-function toggleQuestionCard () {
-  (this.state.question=== true) ? (
-    this.setState({question: false}),
-    console.log('done')
-  )
-  :
-  this.setState({question: true})
-}
 class QuizQuestionCard extends Component {
   state = {
     question: true
   }
 render () {
-  const { toggleQuestionCard } = this.props
+  const { toggleQuestionCard, Que } = this.props
   return (
     <View>
       {(this.state.question===true) ?
           (<View>
-          <Text>Does ... ?</Text>
+          <Text>{Que.question}</Text>
           <TextButon  onPress={() => this.setState({question: false})}>
             Answer
           </TextButon>
           </View>)
         :
           (<View>
-          <Text>Yes it does</Text>
+          <Text>{Que.answer}</Text>
           <TextButon onPress={() => this.setState({question: true})}>
             Question
           </TextButon>
@@ -37,5 +29,10 @@ render () {
     </View>
   )
 }
+}
+function mapStateToProps(state, {Que}) {
+  return {
+    Que
+  }
 }
 export default QuizQuestionCard

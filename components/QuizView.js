@@ -8,33 +8,44 @@ function quiz (questions) {
   return
 }
 
+
+
 class QuizView extends Component {
+  state = {
+    ansQ: 0,
+  }
   render () {
-    const { id, questionOne, questions } = this.props
+    const { id, questions, nrQuestions } = this.props
     return (
       <View>
         <View>
-          <Text>Quiz from: {id}</Text>
-          <Text>nr of questions in deck</Text>
-          <Text>nr of answeared questions plus 1</Text>
+          <Text>Quiz: {id}</Text>
+          <Text> {this.state.ansQ} / {nrQuestions}</Text>
         </View>
         <View>
-          <QuizQuestionCard />
-          <Button title='correct' />
+
+          <QuizQuestionCard  Que={questions[this.state.ansQ]}/>
+          <Button title='correct' onPress={(state) => this.setState({ansQ: this.state.ansQ +1})}/>
           <Button title='incorrect' />
         </View>
       </View>
     )
   }
 }
+
+
+
 function mapStateToProps(state, {id}) {
   const questions = state[id].questions
   const questionOne = questions[0].question
 
+  const questionKeyList = Object.keys(state)
+  const nrQuestions = questionKeyList.length
+
   return {
     id,
-    questionOne,
-    questions
+    questions,
+    nrQuestions,
   }
 }
 export default connect(mapStateToProps)(QuizView)

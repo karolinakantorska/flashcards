@@ -4,15 +4,15 @@ const initialState ={
     title:  'Math',
     questions: [
       {
-        question: ' 8 * 7 = ... ',
+        question: 'How much is: 8 * 7 = ... ?',
         answer: ' 56 '
       },
       {
-        question: ' 9 * 8 = ... ',
+        question: 'How much is: 9 * 8 = ... ?',
         answer: ' 72 '
       },
       {
-        question: ' 6 * 8 = ... ',
+        question: 'How much is: 6 * 8 = ... ?',
         answer: ' 48 '
       },
     ]
@@ -21,15 +21,15 @@ const initialState ={
     title: 'Colors',
     questions: [
       {
-        question: '#000000',
+        question: 'What color is: #000000 ?',
         answer: 'black'
       },
       {
-        question: 'rgb(0, 0, 0)',
+        question: 'What color is: rgb(0, 0, 0) ?',
         answer: 'black'
       },
       {
-        question: '#ffffff',
+        question: 'What color is: #ffffff ?' ,
         answer: 'white'
       },
     ]
