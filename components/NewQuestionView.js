@@ -22,10 +22,10 @@ class NewQuestionView extends Component {
     answer: ''
   }
   render () {
-    const { text } = this.props
+    const { id } = this.props
     return (
       <View>
-        <Text>{text}</Text>
+        <Text>{id}</Text>
         <Text>Add Question</Text>
           <TextInput
             style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
@@ -48,9 +48,9 @@ class NewQuestionView extends Component {
   }
 }
 
-function mapStateToProps (state, { text } ) {
+function mapStateToProps (state, { id } ) {
   return {
-    text
+    id
   }
 }
 export default connect(mapStateToProps)(NewQuestionView)

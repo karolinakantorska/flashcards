@@ -3,13 +3,13 @@ import React, { Component } from "react"
 import { View, StyleSheet, Text, Button, TextInput } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 
-function SubmittBtn ({text}) {
+function SubmittBtn ({id}) {
   const navigation = useNavigation();
   return (
     <Button
       title="Submitt"
       onPress={() => {
-        navigation.navigate('AddQuestion', {text: text})
+        navigation.navigate('AddQuestion', {id: id})
       }}
       />
   )
@@ -32,7 +32,7 @@ class NewDeckView extends Component {
             value={this.state.text}
           />
         <Text>{this.state.text}</Text>
-        <SubmittBtn text={`deck: ${this.state.text}`}/>
+        <SubmittBtn id={this.state.text}/>
       </View>
     )
   }

@@ -40,10 +40,10 @@ function AddDeck({ navigation }) {
   );
 }
 function AddQuestion({ route, navigation }) {
-  const { text } = route.params;
+  const { id } = route.params;
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <NewQuestionView text={text}/>
+      <NewQuestionView id={id}/>
     </View>
   );
 }

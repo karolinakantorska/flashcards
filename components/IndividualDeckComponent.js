@@ -5,15 +5,17 @@ import { useNavigation } from '@react-navigation/native'
 import { connect } from "react-redux";
 import IndividualDeckComponentMin from './IndividualDeckComponentMin'
 
-function AddQuestionBtn () {
+function AddQuestionBtn ({id}) {
   const navigation = useNavigation();
   return (
     <Button
       title="Add Question"
-      onPress={() => navigation.navigate('AddQuestion')}
+      onPress={() => navigation.navigate('AddQuestion', {id:id})}
       />
   )
 }
+
+
 function StartQuizBtn ({id}) {
   const navigation = useNavigation();
   return (
@@ -34,7 +36,7 @@ class IndividualDeckComponent extends Component {
     return (
       <View>
         <IndividualDeckComponentMin id={id}/>
-        <AddQuestionBtn />
+        <AddQuestionBtn id={id} />
         <StartQuizBtn id={id} />
       </View>
     )
