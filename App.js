@@ -39,10 +39,11 @@ function AddDeck({ navigation }) {
     </View>
   );
 }
-function AddQuestion({ navigation }) {
+function AddQuestion({ route, navigation }) {
+  const { text } = route.params;
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <NewQuestionView />
+      <NewQuestionView text={text}/>
     </View>
   );
 }
@@ -123,23 +124,24 @@ class App extends React.Component {
           <Stack.Screen
             name= 'Deck'
             component= {Deck}
-            options={{
-              title: 'Deck',
+            options={({ route }) => ({
+              title: route.params.id,
               headerRight: () => (
               <HomeButton />
-            ),
-            }}
+              ),
+             })}
           />
           <Stack.Screen
             name= 'Quiz'
             component= {Quiz}
-            options={{
-              title: 'Quiz',
+            options={({ route }) => ({
+              title:`Quiz: ${route.params.id}` ,
               headerRight: () => (
               <HomeButton />
-            ),
-            }}
+              ),
+             })}
           />
+
           </Stack.Navigator>
         </NavigationContainer>
       </Provider>
