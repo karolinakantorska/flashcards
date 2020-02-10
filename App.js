@@ -1,7 +1,6 @@
-// import 'react-native-gesture-handler'
 import * as React from 'react'
 import { View, Text, Button } from 'react-native'
-import { NavigationContainer } from '@react-navigation/native'
+import { NavigationContainer, useNavigation } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 
 import { createStore } from "redux";
@@ -22,13 +21,6 @@ function HomeScreen({ navigation }) {
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <DeckListView
         style={{ backgroundColor: '#f8ffe6', borderStyle: 'solid' }}
-      />
-      <Button
-        title="Add Deck"
-        onPress={() => navigation.navigate('AddDeck')}
-      />
-      <Button
-        title="Delete Deck"
       />
     </View>
   );
@@ -73,7 +65,8 @@ function QuizQuesCard({ route, navigation }) {
   );
 }
 
-function HomeButton({ navigation }) {
+function HomeButton() {
+  const navigation = useNavigation();
   return <Button
     onPress={() => navigation.navigate('Home')}
     title="Home"
@@ -150,7 +143,6 @@ class App extends React.Component {
               ),
              })}
           />
-
           </Stack.Navigator>
         </NavigationContainer>
       </Provider>

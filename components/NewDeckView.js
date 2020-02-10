@@ -1,7 +1,9 @@
-//import React from 'react'
 import React, { Component } from "react"
 import { View, StyleSheet, Text, Button, TextInput } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
+
+import addDeck from '../actions/index.js'
+
 
 function SubmittBtn ({id}) {
   const navigation = useNavigation();
@@ -9,6 +11,7 @@ function SubmittBtn ({id}) {
     <Button
       title="Submitt"
       onPress={() => {
+        addDeck(id)
         navigation.navigate('AddQuestion', {id: id})
       }}
       />

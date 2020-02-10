@@ -1,4 +1,6 @@
 import { RECEIVE_DECKS, ADD_DECK } from '../actions'
+import {AsyncStorage} from 'react-native';
+
 const initialState ={
   math: {
     title:  'Math',
@@ -35,7 +37,7 @@ const initialState ={
     ]
   }
 }
-// function decks(state= initialState, action) {
+
 function decks (state= initialState, action) {
   switch (action.type) {
     case RECEIVE_DECKS:
@@ -44,9 +46,10 @@ function decks (state= initialState, action) {
         ...action.decks
       }
     case ADD_DECK:
+      // AsyncStorage.setItem('deck', action.id)
       return {
         ...state,
-        [action.deck]: 'new deck'
+        [action.id]: 'new deck'
       }
     default:
       return state;

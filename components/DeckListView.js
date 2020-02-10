@@ -1,22 +1,41 @@
-// import React from 'react'
 import React, { Component } from 'react'
-import { SafeAreaView,View, StyleSheet, FlatList, Text } from 'react-native'
-import IndividualDeckComponentMin from './IndividualDeckComponentMin'
+import { SafeAreaView,View, StyleSheet, FlatList, Text, Button } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
 import { connect } from "react-redux";
-// import { useNavigation } from '@react-navigation/native'
+
+import IndividualDeckComponentMin from './IndividualDeckComponentMin'
+
+function AddDeckBtn () {
+  const navigation = useNavigation();
+  return (
+    <Button
+      title="Add Deck"
+      onPress={() => navigation.navigate('AddDeck')}
+    />
+  )
+}
+function DeleteDeckBtn () {
+  const navigation = useNavigation();
+  return (
+    <Button
+      title="Delete Deck"
+    />
+  )
+}
 
 class DeckListView extends Component {
   render () {
-    // const navigation = useNavigation();
     const { ID, list } = this.props
     return (
       <View>
       <SafeAreaView style={styles.container}>
           <FlatList
             data= {ID}
-            renderItem = {({ item }) => <IndividualDeckComponentMin id={item}/>}
-            keyExtractor={item => item.id}
+            renderItem = {({ item }) => <IndividualDeckComponentMin id={item}  key ={item} />}
+
             />
+          <AddDeckBtn />
+          <DeleteDeckBtn />
         </SafeAreaView>
       </View>
     )
@@ -43,7 +62,7 @@ export default connect(mapStateToProps)(DeckListView)
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 100
+    marginTop: 50
   },
   item: {
     padding: 10,

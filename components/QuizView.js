@@ -20,7 +20,6 @@ class QuizView extends Component {
           <View>
             <Text>Quiz: {id}</Text>
             <Text> {this.state.ansQ} / {nrQuestions}</Text>
-            <Text>correct: {this.state.correct}</Text>
           </View>
           <View>
             <QuizQuestionCard  Que={questions[this.state.ansQ]}/>
