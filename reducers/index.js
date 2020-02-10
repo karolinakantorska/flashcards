@@ -1,4 +1,4 @@
-import { RECEIVE_DECKS, ADD_DECK } from '../actions'
+import { RECEIVE_DECKS, ADD_DECK, RECEIVE_DECK } from '../actions'
 import {AsyncStorage} from 'react-native';
 
 const initialState ={
@@ -46,11 +46,16 @@ function decks (state= initialState, action) {
         ...action.decks
       }
     case ADD_DECK:
-      // AsyncStorage.setItem('deck', action.id)
       return {
         ...state,
         [action.id]: 'new deck'
       }
+    case RECEIVE_DECK:
+      return{
+        ...state,
+        ...action.id
+      }
+
     default:
       return state;
   }

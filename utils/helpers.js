@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet, AsyncStorage } from "react-native";
+import { decks } from '../reducers/index'
 
 import {
   FontAwesome,
@@ -12,8 +13,7 @@ const DECK = 'deck'
 
 // getDecks: return all of the decks along with their titles, questions, and answers.
 export const _getDecks = () => {
-  return
-
+  return decks
 }
 
 // saveDeckTitle: take in a single title argument and add it to the decks.
@@ -26,11 +26,10 @@ export const _saveDeckTitle = async id => {
 }
 
 // getDeck: take in a single id argument and return the deck associated with that id.
-
-export const getDeck = async () => {
+export const _getDeck = async () => {
   let deck = ''
   try {
-    deck = await AsyncStorage.getItem('deck') || 'none'
+    deck = await AsyncStorage.getItem('deck')
   } catch (error) {
     console.log(error.message)
   }

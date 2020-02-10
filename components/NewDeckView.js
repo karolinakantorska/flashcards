@@ -4,6 +4,7 @@ import { useNavigation } from '@react-navigation/native'
 import { connect } from 'react-redux'
 
 import { hadleSaveDeck } from '../actions/index'
+import { handleGetDeck} from '../actions/index'
 
 
 function SubmittBtn ({id}) {
@@ -26,8 +27,10 @@ class NewDeckView extends Component {
 
   render () {
     const {setText} = this.props
+    const test = handleGetDeck('mat')
     return (
       <View>
+        <Text>{ test }</Text>
         <Text>Enter the title</Text>
           <TextInput
             style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}

@@ -14,7 +14,7 @@ import DeckListView from './components/DeckListView'
 import IndividualDeckComponent from './components/IndividualDeckComponent'
 import QuizView from './components/QuizView'
 import QuizQuestionCard from './components/QuizQuestionCard'
-import handleInitialData from './actions/index'
+import { handleInitialData } from './actions/index'
 
 // import { receiveDecks } from './actions/index.js'
 // import { getDecks } from './utils/helpers'
@@ -81,7 +81,7 @@ const Stack = createStackNavigator();
 
 class App extends React.Component {
   componentDidMount() {
-    // this.props.dispatch(handleInitialData())
+
   }
   render () {
     return (

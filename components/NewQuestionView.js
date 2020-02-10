@@ -3,6 +3,7 @@ import React, { Component } from "react"
 import { View, StyleSheet, Text, Button,TextInput } from 'react-native'
 import { connect } from "react-redux";
 import { useNavigation } from '@react-navigation/native'
+import { handleGetDeck} from '../actions/index'
 
 function SubmittBtn ({question},{answer}) {
   const navigation = useNavigation();
@@ -10,7 +11,6 @@ function SubmittBtn ({question},{answer}) {
     <Button
       title="Submitt"
       onPress={() => {
-
       }}
       />
   )
@@ -23,8 +23,10 @@ class NewQuestionView extends Component {
   }
   render () {
     const { id } = this.props
+    const test = handleGetDeck('mat')
     return (
       <View>
+        <Text>{test}</Text>
         <Text>{id}</Text>
         <Text>Add Question</Text>
           <TextInput
