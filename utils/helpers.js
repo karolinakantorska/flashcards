@@ -10,19 +10,16 @@ import { white, pink, red, orange, blue, lightPurp } from "./colors";
 
 const DECK = 'deck'
 
-function generateQuestionID () {
-  return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
-}
-
 // getDecks: return all of the decks along with their titles, questions, and answers.
-export function getDecks () {
+export const _getDecks = () => {
+  return
 
 }
 
 // saveDeckTitle: take in a single title argument and add it to the decks.
-export const saveDeckTitle = async title => {
+export const _saveDeckTitle = async id => {
   try {
-    await AsyncStorage.setItem('deck', title)
+    await AsyncStorage.setItem('deck', id)
   } catch (error) {
     console.log(error.message)
   }

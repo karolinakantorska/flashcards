@@ -6,6 +6,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 import reducer from "./reducers";
+import middleware from './middleware'
 
 import NewDeckView from './components/NewDeckView'
 import NewQuestionView from './components/NewQuestionView'
@@ -13,8 +14,10 @@ import DeckListView from './components/DeckListView'
 import IndividualDeckComponent from './components/IndividualDeckComponent'
 import QuizView from './components/QuizView'
 import QuizQuestionCard from './components/QuizQuestionCard'
+import handleInitialData from './actions/index'
 
-import { getDecks } from './utils/helpers'
+// import { receiveDecks } from './actions/index.js'
+// import { getDecks } from './utils/helpers'
 
 function HomeScreen({ navigation }) {
   return (
@@ -78,11 +81,11 @@ const Stack = createStackNavigator();
 
 class App extends React.Component {
   componentDidMount() {
-    getDecks ()
+    // this.props.dispatch(handleInitialData())
   }
   render () {
     return (
-      <Provider store={createStore(reducer)}>
+      <Provider store={createStore(reducer, middleware)}>
         <NavigationContainer>
           <Stack.Navigator
             initialRouteName="Home"
@@ -149,4 +152,4 @@ class App extends React.Component {
     );
   }
 }
-export default App;
+export default App

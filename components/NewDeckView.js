@@ -1,8 +1,9 @@
 import React, { Component } from "react"
 import { View, StyleSheet, Text, Button, TextInput } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
+import { connect } from 'react-redux'
 
-import addDeck from '../actions/index.js'
+import { hadleSaveDeck } from '../actions/index'
 
 
 function SubmittBtn ({id}) {
@@ -11,8 +12,8 @@ function SubmittBtn ({id}) {
     <Button
       title="Submitt"
       onPress={() => {
-        addDeck(id)
-        navigation.navigate('AddQuestion', {id: id})
+        hadleSaveDeck(id)
+        (() => navigation.navigate('AddQuestion', {id: id}))
       }}
       />
   )
@@ -40,5 +41,6 @@ class NewDeckView extends Component {
     )
   }
 }
-export default NewDeckView
+// export default connect(null, {addDeck})(NewDeckView)
+export default connect()(NewDeckView)
             // onSubmitEditing={(text) => this.setState({text: ''})}
