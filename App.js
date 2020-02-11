@@ -18,25 +18,6 @@ import QuizQuestionCard from './components/QuizQuestionCard'
 import { handleInitialData } from './actions/index'
 
 
-
-function HomeScreen({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <DeckListView
-        style={{ backgroundColor: '#f8ffe6', borderStyle: 'solid' }}
-      />
-    </View>
-  );
-}
-
-function AddQuestion({ route, navigation }) {
-  const { id } = route.params;
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <NewQuestionView id={id}/>
-    </View>
-  );
-}
 function Deck({ route, navigation }) {
   const { id } = route.params;
   return (
@@ -45,14 +26,16 @@ function Deck({ route, navigation }) {
     </View>
   );
 }
-function Quiz({ route, navigation }) {
-  const { id } = route.params;
+
+function HomeScreen({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <QuizView id={id} />
+      <DeckListView
+      />
     </View>
   );
 }
+
 function QuizQuesCard({ route, navigation }) {
   const { Que } = route.params;
   return (
@@ -76,6 +59,7 @@ const Stack = createStackNavigator();
 class App extends React.Component {
 
   render () {
+
     return (
       <Provider store={createStore(reducer, middleware)}>
         <NavigationContainer >
@@ -110,7 +94,8 @@ class App extends React.Component {
             />
             <Stack.Screen
               name= 'AddQuestion'
-              component= {AddQuestion}
+              component= {NewQuestionView}
+
               options={{
                 title: 'Add New Question',
                 headerRight: () => (
@@ -120,7 +105,8 @@ class App extends React.Component {
             />
             <Stack.Screen
               name= 'Deck'
-              component= {Deck}
+              component= {IndividualDeckComponent}
+              initialParams=
               options={({ route }) => ({
                 title: route.params.id,
                 headerRight: () => (
@@ -130,7 +116,8 @@ class App extends React.Component {
             />
             <Stack.Screen
               name= 'Quiz'
-              component= {Quiz}
+              component= {QuizView}
+              initialParams= {({ route }) => ( {id = ${route.params.id}} )  }
               options={({ route }) => ({
                 title:`Quiz: ${route.params.id}` ,
                 headerRight: () => (
@@ -140,7 +127,6 @@ class App extends React.Component {
             />
           </Stack.Navigator>
         </NavigationContainer>
-
       </Provider>
     );
   }

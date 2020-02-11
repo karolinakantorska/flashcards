@@ -1,6 +1,5 @@
 import React, { Component } from "react"
 import { View, StyleSheet, Text, Button, TextInput } from 'react-native'
-import { useNavigation } from '@react-navigation/native'
 import { connect } from 'react-redux'
 
 import { hadleSaveDeck } from '../actions/index'
@@ -12,7 +11,7 @@ class NewDeckView extends Component {
   }
 
   render () {
-    const navigation = useNavigation();
+    const { navigation } = this.props
     return (
       <View>
         <Text>Enter the title</Text>
@@ -27,7 +26,7 @@ class NewDeckView extends Component {
             title="Submitt"
             onPress={() => {
               this.props.dispatch(hadleSaveDeck(this.state.text))
-              // navigation.navigate('AddQuestion', {id: id})
+              navigation.navigate('AddQuestion', {id: this.state.text})
             }}
             />
 

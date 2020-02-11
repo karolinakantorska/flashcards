@@ -28,10 +28,10 @@ class DeckListView extends Component {
   //   // this.props.dispatch(handleInitialData())
   // }
   render () {
-    const { ID, list, state } = this.props
+    const { ID, state } = this.props
     console.log(state)
     return (
-      <View>
+      <View >
       <SafeAreaView style={styles.container}>
           <FlatList
             data= {ID}
@@ -47,17 +47,9 @@ class DeckListView extends Component {
 }
 function mapStateToProps (state) {
   const ID = Object.keys(state)
-  const list = ID.map((deck) => {
-    return [
-      {
-        id: deck,
-        nrQ: state[deck].questions.length
-      }
-    ]
-  })
+
   return{
     ID,
-    list,
     state
   }
 }

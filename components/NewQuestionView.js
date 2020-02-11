@@ -1,19 +1,7 @@
 import React, { Component } from "react"
 import { View, StyleSheet, Text, Button,TextInput } from 'react-native'
 import { connect } from "react-redux";
-import { useNavigation } from '@react-navigation/native'
 import { handleGetDeck} from '../actions/index'
-
-function SubmittBtn ({question},{answer}) {
-  const navigation = useNavigation();
-  return (
-    <Button
-      title="Submitt"
-      onPress={() => {
-      }}
-      />
-  )
-}
 
 class NewQuestionView extends Component {
   state = {
@@ -21,7 +9,9 @@ class NewQuestionView extends Component {
     answer: ''
   }
   render () {
-    const { id } = this.props
+    const { navigation } = this.props
+    const { id, state } = this.props
+    console.log(state)
     return (
       <View>
         <Text>{id}</Text>
@@ -41,7 +31,11 @@ class NewQuestionView extends Component {
             value={this.state.answer}
           />
         <Text>{this.state.answer}</Text>
-        <SubmittBtn />
+          <Button
+            title="Submitt"
+            onPress={() => {
+            }}
+            />
       </View>
     )
   }
@@ -49,7 +43,8 @@ class NewQuestionView extends Component {
 
 function mapStateToProps (state, { id } ) {
   return {
-    id
+    id,
+    state
   }
 }
 export default connect(mapStateToProps)(NewQuestionView)

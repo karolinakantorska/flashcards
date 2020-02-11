@@ -1,44 +1,25 @@
-//import React from 'react'
 import React, { Component } from "react"
 import { View, StyleSheet, Text, Button } from 'react-native'
-import { useNavigation } from '@react-navigation/native'
+
 import { connect } from "react-redux";
 import IndividualDeckComponentMin from './IndividualDeckComponentMin'
-
-function AddQuestionBtn ({id}) {
-  const navigation = useNavigation();
-  return (
-    <Button
-      title="Add Question"
-      onPress={() => navigation.navigate('AddQuestion', {id:id})}
-      />
-  )
-}
-
-
-function StartQuizBtn ({id}) {
-  const navigation = useNavigation();
-  return (
-    <View>
-      <Text>{id}</Text>
-      <Button
-        title="Quiz"
-        onPress={() => navigation.navigate('Quiz', {id:id})}
-        />
-    </View>
-
-  )
-}
 
 class IndividualDeckComponent extends Component {
   render () {
     const {id }= this.props
+    const { navigation } = this.props
     return (
       <View>
         <IndividualDeckComponentMin id={id}/>
-        <AddQuestionBtn id={id} />
-        <StartQuizBtn id={id} />
-      </View>
+      <Button
+        title="Add Question"
+        onPress={() => navigation.navigate('AddQuestion', {id:id})}
+        />
+        <Button
+          title="Quiz"
+          onPress={() => navigation.navigate('Quiz', {id:id})}
+          />
+              </View>
     )
   }
 }
