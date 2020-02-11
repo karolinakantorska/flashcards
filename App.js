@@ -18,24 +18,41 @@ import QuizQuestionCard from './components/QuizQuestionCard'
 import { handleInitialData } from './actions/index'
 
 
-function Deck({ route, navigation }) {
-  const { id } = route.params;
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <IndividualDeckComponent id={id}/>
-    </View>
-  );
-}
 
 function HomeScreen({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <DeckListView
+        style={{ backgroundColor: '#f8ffe6', borderStyle: 'solid' }}
       />
     </View>
   );
 }
 
+function AddQuestion({ route, navigation }) {
+  const { id } = route.params;
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <NewQuestionView id={id}/>
+    </View>
+  );
+}
+function Deck({ route, navigation }) {
+  const { list } = route.params;
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <IndividualDeckComponent list={list}/>
+    </View>
+  );
+}
+function Quiz({ route, navigation }) {
+  const { id } = route.params;
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <QuizView id={id} />
+    </View>
+  );
+}
 function QuizQuesCard({ route, navigation }) {
   const { Que } = route.params;
   return (
@@ -59,10 +76,9 @@ const Stack = createStackNavigator();
 class App extends React.Component {
 
   render () {
-
     return (
       <Provider store={createStore(reducer, middleware)}>
-        <NavigationContainer >
+        <NavigationContainer>
             <Stack.Navigator
               initialRouteName="Home"
               screenOptions={{
@@ -94,8 +110,7 @@ class App extends React.Component {
             />
             <Stack.Screen
               name= 'AddQuestion'
-              component= {NewQuestionView}
-
+              component= {AddQuestion}
               options={{
                 title: 'Add New Question',
                 headerRight: () => (
@@ -105,8 +120,7 @@ class App extends React.Component {
             />
             <Stack.Screen
               name= 'Deck'
-              component= {IndividualDeckComponent}
-              initialParams=
+              component= {Deck}
               options={({ route }) => ({
                 title: route.params.id,
                 headerRight: () => (
@@ -116,8 +130,7 @@ class App extends React.Component {
             />
             <Stack.Screen
               name= 'Quiz'
-              component= {QuizView}
-              initialParams= {({ route }) => ( {id = ${route.params.id}} )  }
+              component= {Quiz}
               options={({ route }) => ({
                 title:`Quiz: ${route.params.id}` ,
                 headerRight: () => (
@@ -127,6 +140,7 @@ class App extends React.Component {
             />
           </Stack.Navigator>
         </NavigationContainer>
+
       </Provider>
     );
   }

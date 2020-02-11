@@ -2,6 +2,9 @@ import React, { Component } from "react"
 import { View, StyleSheet, Text, Button,TextInput } from 'react-native'
 import { connect } from "react-redux";
 import { handleGetDeck} from '../actions/index'
+import { hadleSaveQuestion } from '../actions/index'
+
+
 
 class NewQuestionView extends Component {
   state = {
@@ -9,9 +12,9 @@ class NewQuestionView extends Component {
     answer: ''
   }
   render () {
+    // TODO remove navi
     const { navigation } = this.props
     const { id, state } = this.props
-    console.log(state)
     return (
       <View>
         <Text>{id}</Text>
@@ -34,6 +37,8 @@ class NewQuestionView extends Component {
           <Button
             title="Submitt"
             onPress={() => {
+              this.props.dispatch(hadleSaveQuestion(id, this.state.answer, this.state.question))
+              this.setState({question: '', answer: ''})
             }}
             />
       </View>

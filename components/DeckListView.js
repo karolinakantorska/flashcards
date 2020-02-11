@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { SafeAreaView,View, StyleSheet, FlatList, Text, Button } from 'react-native'
+import { SafeAreaView,View, StyleSheet, FlatList, Text, Button,TouchableOpacity } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { connect } from "react-redux";
 
@@ -22,21 +22,24 @@ function DeleteDeckBtn () {
     />
   )
 }
-
+function navigating (id) {
+  const navigation = useNavigation();
+  return (
+    navigation.navigate('Deck', {id:id})
+  )
+}
 class DeckListView extends Component {
   // componentDidMount() {
   //   // this.props.dispatch(handleInitialData())
   // }
   render () {
-    const { ID, state } = this.props
-    console.log(state)
+    const { ID, state, list } = this.props
     return (
-      <View >
+      <View>
       <SafeAreaView style={styles.container}>
           <FlatList
-            data= {ID}
-            renderItem = {({ item }) => <IndividualDeckComponentMin id={item}  key ={item} />}
-
+            data= {list}
+            renderItem = {({ item }) =><IndividualDeckComponentMin list={item} key ={item.id} />}
             />
           <AddDeckBtn />
           <DeleteDeckBtn />
@@ -47,10 +50,17 @@ class DeckListView extends Component {
 }
 function mapStateToProps (state) {
   const ID = Object.keys(state)
-
+  const list = ID.map((id) => {
+    const cardsNr = state[id].questions.length
+    return {
+      id,
+      cardsNr,
+    }
+  })
   return{
     ID,
-    state
+    state,
+    list
   }
 }
 export default connect(mapStateToProps)(DeckListView)

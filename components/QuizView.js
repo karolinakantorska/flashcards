@@ -1,8 +1,29 @@
-//import React from 'react'
 import React, { Component } from "react"
 import { View, StyleSheet, Text, Button } from 'react-native'
 import { connect } from "react-redux";
+import { useNavigation } from '@react-navigation/native'
 import QuizQuestionCard from './QuizQuestionCard'
+
+// TODO have to reload a component somehow
+function RestartQuizBtn ({id}) {
+  const navigation = useNavigation();
+  return (
+    <Button
+      title='Restart Quiz'
+      onPress={() => navigation.navigate('Quiz', {id:id})}>
+    </Button>
+  )
+}
+
+function BackToDeckBtn ({id}) {
+  const navigation = useNavigation();
+  return (
+    <Button
+      title='Back to Deck'
+      onPress={() => navigation.navigate('Deck', {id: id})}>
+    </Button>
+  )
+}
 
 class QuizView extends Component {
   state = {
@@ -14,7 +35,12 @@ class QuizView extends Component {
     return (
       <View>
         { (this.state.ansQ === nrQuestions) ?
-          (<Text style={{fontSize: 20 }}>correct: {this.state.correct} / {nrQuestions}</Text>)
+          (<View>
+            <Text style={{fontSize: 20 }}>correct: {this.state.correct} / {nrQuestions}</Text>
+            <RestartQuizBtn id={id} />
+            <BackToDeckBtn id={id} />
+          </View>
+        )
         :
         (<View>
           <View>
@@ -23,8 +49,12 @@ class QuizView extends Component {
           </View>
           <View>
             <QuizQuestionCard  Que={questions[this.state.ansQ]}/>
-            <Button title='correct' onPress={(state) => this.setState({ansQ: this.state.ansQ +1, correct: this.state.correct +1 })}/>
-            <Button title='incorrect' onPress={(state) => this.setState({ansQ: this.state.ansQ +1})}/>
+            <Button
+              title='correct'
+              onPress={(state) => this.setState({ansQ: this.state.ansQ +1, correct: this.state.correct +1 })}/>
+            <Button
+              title='incorrect'
+              onPress={(state) => this.setState({ansQ: this.state.ansQ +1})}/>
           </View>
         </View>)
         }
@@ -36,8 +66,7 @@ class QuizView extends Component {
 function mapStateToProps(state, {id}) {
   const questions = state[id].questions
 
-  const questionKeyList = Object.keys(state)
-  const nrQuestions = questionKeyList.length + 1
+  const nrQuestions = state[id].questions.length
 
   return {
     id,

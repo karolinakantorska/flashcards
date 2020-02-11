@@ -3,7 +3,6 @@ import { View, StyleSheet, Text, Button, TextInput } from 'react-native'
 import { connect } from 'react-redux'
 
 import { hadleSaveDeck } from '../actions/index'
-import { handleGetDeck} from '../actions/index'
 
 class NewDeckView extends Component {
   state = {
@@ -26,10 +25,10 @@ class NewDeckView extends Component {
             title="Submitt"
             onPress={() => {
               this.props.dispatch(hadleSaveDeck(this.state.text))
-              navigation.navigate('AddQuestion', {id: this.state.text})
+              navigation.navigate('Deck', {id: this.state.text})
+              this.setState({text: ''})
             }}
             />
-
       </View>
     )
   }

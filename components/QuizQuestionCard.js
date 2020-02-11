@@ -15,14 +15,14 @@ render () {
           (<View>
           <Text>{Que.question}</Text>
           <TextButon  onPress={() => this.setState({question: false})}>
-            Answer
+            Show Answer
           </TextButon>
           </View>)
         :
           (<View>
           <Text>{Que.answer}</Text>
           <TextButon onPress={() => this.setState({question: true})}>
-            Question
+            Show Question
           </TextButon>
           </View>)
         }

@@ -1,8 +1,7 @@
-import { RECEIVE_DECKS, ADD_DECK, RECEIVE_DECK } from '../actions'
+import { RECEIVE_DECKS, ADD_DECK, ADD_QUESTION, RECEIVE_DECK } from '../actions'
 
 const initialState ={
   math: {
-    title:  'Math',
     questions: [
       {
         question: 'How much is: 8 * 7 = ... ?',
@@ -19,7 +18,6 @@ const initialState ={
     ]
   },
   colors: {
-    title: 'Colors',
     questions: [
       {
         question: 'What color is: #000000 ?',
@@ -36,7 +34,7 @@ const initialState ={
     ]
   }
 }
-
+// addQuestion(id, answer, question)
 function decks (state= initialState, action) {
   switch (action.type) {
     case RECEIVE_DECKS:
@@ -47,8 +45,19 @@ function decks (state= initialState, action) {
     case ADD_DECK:
       return {
         ...state,
-        [action.id]: 'new deck'
+        [action.id]: { questions: [] }
       }
+    case ADD_QUESTION:
+      return {
+        ...state,
+        [action.id]: {
+          ...state[action.id],
+          questions: state[action.id].questions.concat(
+            {answer: action.answer,
+            question: action.question}
+          )
+    }
+  }
     case RECEIVE_DECK:
       return{
         ...state,
