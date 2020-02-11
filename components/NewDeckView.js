@@ -6,26 +6,13 @@ import { connect } from 'react-redux'
 import { hadleSaveDeck } from '../actions/index'
 import { handleGetDeck} from '../actions/index'
 
-
-function SubmittBtn ({id}) {
-  const navigation = useNavigation();
-  return (
-    <Button
-      title="Submitt"
-      onPress={() => {
-        this.props.dispatch(hadleSaveDeck(id))
-        // navigation.navigate('AddQuestion', {id: id})
-      }}
-      />
-  )
-}
-
 class NewDeckView extends Component {
   state = {
     text: '',
   }
 
   render () {
+    const navigation = useNavigation();
     return (
       <View>
         <Text>Enter the title</Text>
@@ -36,7 +23,14 @@ class NewDeckView extends Component {
             value={this.state.text}
           />
         <Text>{this.state.text}</Text>
-        <SubmittBtn id={this.state.text}/>
+          <Button
+            title="Submitt"
+            onPress={() => {
+              this.props.dispatch(hadleSaveDeck(this.state.text))
+              // navigation.navigate('AddQuestion', {id: id})
+            }}
+            />
+
       </View>
     )
   }

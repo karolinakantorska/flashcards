@@ -28,13 +28,7 @@ function HomeScreen({ navigation }) {
     </View>
   );
 }
-function AddDeck({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <NewDeckView />
-    </View>
-  );
-}
+
 function AddQuestion({ route, navigation }) {
   const { id } = route.params;
   return (
@@ -84,7 +78,7 @@ class App extends React.Component {
   render () {
     return (
       <Provider store={createStore(reducer, middleware)}>
-        <NavigationContainer>
+        <NavigationContainer >
             <Stack.Navigator
               initialRouteName="Home"
               screenOptions={{
@@ -106,7 +100,7 @@ class App extends React.Component {
               />
             <Stack.Screen
               name= 'AddDeck'
-              component= {AddDeck}
+              component= {NewDeckView}
               options={{
                 title: 'Add New Deck',
                 headerRight: () => (
