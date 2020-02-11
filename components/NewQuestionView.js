@@ -1,4 +1,3 @@
-//import React from 'react'
 import React, { Component } from "react"
 import { View, StyleSheet, Text, Button,TextInput } from 'react-native'
 import { connect } from "react-redux";
@@ -23,10 +22,8 @@ class NewQuestionView extends Component {
   }
   render () {
     const { id } = this.props
-    const test = handleGetDeck('mat')
     return (
       <View>
-        <Text>{test}</Text>
         <Text>{id}</Text>
         <Text>Add Question</Text>
           <TextInput

@@ -5,6 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 
 import { createStore } from "redux";
 import { Provider } from "react-redux";
+
 import reducer from "./reducers";
 import middleware from './middleware'
 
@@ -16,8 +17,7 @@ import QuizView from './components/QuizView'
 import QuizQuestionCard from './components/QuizQuestionCard'
 import { handleInitialData } from './actions/index'
 
-// import { receiveDecks } from './actions/index.js'
-// import { getDecks } from './utils/helpers'
+
 
 function HomeScreen({ navigation }) {
   return (
@@ -80,74 +80,73 @@ function HomeButton() {
 const Stack = createStackNavigator();
 
 class App extends React.Component {
-  componentDidMount() {
 
-  }
   render () {
     return (
       <Provider store={createStore(reducer, middleware)}>
         <NavigationContainer>
-          <Stack.Navigator
-            initialRouteName="Home"
-            screenOptions={{
-              headerStyle: {
-                backgroundColor: '#394d00',
-              },
-              headerTintColor: '#fff',
-              headerTitleStyle: {
-                fontWeight: 'bold',
-              },
-            }}
-          >
+            <Stack.Navigator
+              initialRouteName="Home"
+              screenOptions={{
+                headerStyle: {
+                  backgroundColor: '#394d00',
+                },
+                headerTintColor: '#fff',
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                },
+              }}
+            >
+              <Stack.Screen
+                name="Home"
+                component={HomeScreen}
+                options={{
+                  title: 'Decks',
+                 }}
+              />
             <Stack.Screen
-              name="Home"
-              component={HomeScreen}
+              name= 'AddDeck'
+              component= {AddDeck}
               options={{
-                title: 'Decks',
-               }}
+                title: 'Add New Deck',
+                headerRight: () => (
+                <HomeButton />
+              ),
+              }}
             />
-          <Stack.Screen
-            name= 'AddDeck'
-            component= {AddDeck}
-            options={{
-              title: 'Add New Deck',
-              headerRight: () => (
-              <HomeButton />
-            ),
-            }}
-          />
-          <Stack.Screen
-            name= 'AddQuestion'
-            component= {AddQuestion}
-            options={{
-              title: 'Add New Question',
-              headerRight: () => (
-              <HomeButton />
-            ),
-            }}
-          />
-          <Stack.Screen
-            name= 'Deck'
-            component= {Deck}
-            options={({ route }) => ({
-              title: route.params.id,
-              headerRight: () => (
-              <HomeButton />
+            <Stack.Screen
+              name= 'AddQuestion'
+              component= {AddQuestion}
+              options={{
+                title: 'Add New Question',
+                headerRight: () => (
+                <HomeButton />
               ),
-             })}
-          />
-          <Stack.Screen
-            name= 'Quiz'
-            component= {Quiz}
-            options={({ route }) => ({
-              title:`Quiz: ${route.params.id}` ,
-              headerRight: () => (
-              <HomeButton />
-              ),
-             })}
-          />
+              }}
+            />
+            <Stack.Screen
+              name= 'Deck'
+              component= {Deck}
+              options={({ route }) => ({
+                title: route.params.id,
+                headerRight: () => (
+                <HomeButton />
+                ),
+               })}
+            />
+            <Stack.Screen
+              name= 'Quiz'
+              component= {Quiz}
+              options={({ route }) => ({
+                title:`Quiz: ${route.params.id}` ,
+                headerRight: () => (
+                <HomeButton />
+                ),
+               })}
+            />
           </Stack.Navigator>
         </NavigationContainer>
+
       </Provider>
     );
   }

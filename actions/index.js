@@ -1,13 +1,10 @@
-import {_getDecks, _saveDeckTitle, _getDeck } from '../utils/helpers'
-
 export const RECEIVE_DECKS = 'RECEIVE_DECKS'
 export const ADD_DECK = 'ADD_DECK'
 export const RECEIVE_DECK = 'RECEIVE_DECK'
 
-export function receiveDecks(decks) {
+export function receiveDecks() {
   return {
     type: RECEIVE_DECKS,
-    decks
     }
 }
 export function addDeck(id) {
@@ -25,29 +22,29 @@ export function receiveDeck (id) {
 
 export function handleInitialData () {
   return (dispatch) => {
-    return _getDecks()
-    .then((decks) =>  {
-      dispatch(receiveDecks(decks))
-    })
+    // return _getDecks()
+    // .then((decks) =>  {
+      dispatch(receiveDecks())
+    // })
   }
 }
 export function hadleSaveDeck (id) {
   return (dispatch) => {
-    return _saveDeckTitle({
-      id
-    })
-    .then((id) => {
+    // return _saveDeckTitle({
+    //   id
+    // })
+    // .then((id) => {
       dispatch(addDeck(id))
-    })
+    // })
   }
 }
 export function handleGetDeck (id) {
   return (dispatch) => {
-    return _getDeck({
-      id
-    })
-    .then(() => {
+    // return _getDeck({
+    //   id
+    // })
+    // .then(() => {
       dispatch ()
-    })
+    // })
   }
 }

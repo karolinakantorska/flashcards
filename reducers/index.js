@@ -1,5 +1,4 @@
 import { RECEIVE_DECKS, ADD_DECK, RECEIVE_DECK } from '../actions'
-import {AsyncStorage} from 'react-native';
 
 const initialState ={
   math: {
@@ -43,7 +42,7 @@ function decks (state= initialState, action) {
     case RECEIVE_DECKS:
       return {
         ...state,
-        ...action.decks
+        state
       }
     case ADD_DECK:
       return {

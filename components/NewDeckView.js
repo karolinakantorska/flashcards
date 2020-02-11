@@ -13,8 +13,8 @@ function SubmittBtn ({id}) {
     <Button
       title="Submitt"
       onPress={() => {
-        hadleSaveDeck(id)
-        (() => navigation.navigate('AddQuestion', {id: id}))
+        this.props.dispatch(hadleSaveDeck(id))
+        // navigation.navigate('AddQuestion', {id: id})
       }}
       />
   )
@@ -26,11 +26,8 @@ class NewDeckView extends Component {
   }
 
   render () {
-    const {setText} = this.props
-    const test = handleGetDeck('mat')
     return (
       <View>
-        <Text>{ test }</Text>
         <Text>Enter the title</Text>
           <TextInput
             style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
@@ -44,6 +41,5 @@ class NewDeckView extends Component {
     )
   }
 }
-// export default connect(null, {addDeck})(NewDeckView)
+
 export default connect()(NewDeckView)
-            // onSubmitEditing={(text) => this.setState({text: ''})}

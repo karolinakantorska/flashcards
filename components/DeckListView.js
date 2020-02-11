@@ -24,8 +24,12 @@ function DeleteDeckBtn () {
 }
 
 class DeckListView extends Component {
+  // componentDidMount() {
+  //   // this.props.dispatch(handleInitialData())
+  // }
   render () {
-    const { ID, list } = this.props
+    const { ID, list, state } = this.props
+    console.log(state)
     return (
       <View>
       <SafeAreaView style={styles.container}>
@@ -53,7 +57,8 @@ function mapStateToProps (state) {
   })
   return{
     ID,
-    list
+    list,
+    state
   }
 }
 export default connect(mapStateToProps)(DeckListView)
