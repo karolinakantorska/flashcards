@@ -35,7 +35,7 @@ const initialState ={
   }
 }
 // addQuestion(id, answer, question)
-function decks (state= initialState, action) {
+function decks (state = initialState, action) {
   switch (action.type) {
     case RECEIVE_DECKS:
       return {
@@ -53,19 +53,21 @@ function decks (state= initialState, action) {
         [action.id]: {
           ...state[action.id],
           questions: state[action.id].questions.concat(
-            {answer: action.answer,
-            question: action.question}
+            {
+              answer: action.answer,
+              question: action.question
+            }
           )
-    }
-  }
+        }
+      }
     case RECEIVE_DECK:
-      return{
+      return {
         ...state,
         ...action.id
       }
 
     default:
-      return state;
+      return state
   }
 }
 

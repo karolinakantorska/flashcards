@@ -1,7 +1,7 @@
-import React, { Component } from "react"
+import React, { Component } from 'react'
 import { View, StyleSheet, Text, Button } from 'react-native'
 import TextButon from './TextButon'
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 
 class QuizQuestionCard extends Component {
   state = {

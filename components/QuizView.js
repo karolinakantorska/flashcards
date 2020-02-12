@@ -1,6 +1,6 @@
-import React, { Component } from "react"
+import React, { Component } from 'react'
 import { View, StyleSheet, Text, Button } from 'react-native'
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 import { useNavigation } from '@react-navigation/native'
 
 import QuizQuestionCard from './QuizQuestionCard'
@@ -19,7 +19,7 @@ function BackToDeckBtn ({id}) {
 
 class QuizView extends Component {
   componentDidMount () {
-    clearLocalNotifications().then(setLocalNotifications())
+    // clearLocalNotifications().then(setLocalNotifications())
   }
 
   state = {

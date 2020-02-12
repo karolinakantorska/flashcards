@@ -1,4 +1,4 @@
-import React, { Component } from "react"
+import React, { Component } from 'react'
 import { View, StyleSheet, Text, Button, TextInput } from 'react-native'
 import { connect } from 'react-redux'
 
@@ -16,13 +16,13 @@ class NewDeckView extends Component {
         <Text>Enter the title</Text>
           <TextInput
             style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
-            placeholder="Enter the title"
+            placeholder='Enter the title'
             onChangeText={(text) => this.setState({text: text})}
             value={this.state.text}
           />
         <Text>{this.state.text}</Text>
           <Button
-            title="Submitt"
+            title='Submitt'
             onPress={() => {
               this.props.dispatch(hadleSaveDeck(this.state.text))
               navigation.navigate('Deck', {list:[this.state.text, 0] })
