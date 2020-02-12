@@ -17,48 +17,28 @@ import QuizView from './components/QuizView'
 import QuizQuestionCard from './components/QuizQuestionCard'
 import { handleInitialData } from './actions/index'
 
-
-
-function HomeScreen({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <DeckListView
-        style={{ backgroundColor: '#f8ffe6', borderStyle: 'solid' }}
-      />
-    </View>
-  );
-}
-
 function AddQuestion({ route, navigation }) {
   const { id } = route.params;
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <NewQuestionView id={id}/>
-    </View>
   );
 }
 function Deck({ route, navigation }) {
   const { list } = route.params;
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <IndividualDeckComponent list={list}/>
-    </View>
   );
 }
 function Quiz({ route, navigation }) {
   const { id } = route.params;
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <QuizView id={id} />
-    </View>
   );
 }
 function QuizQuesCard({ route, navigation }) {
   const { Que } = route.params;
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <QuizQuestionCard Que={Que} />
-    </View>
   );
 }
 
@@ -93,7 +73,7 @@ class App extends React.Component {
             >
               <Stack.Screen
                 name="Home"
-                component={HomeScreen}
+                component={DeckListView}
                 options={{
                   title: 'Decks',
                  }}

@@ -11,7 +11,9 @@ function RestartQuizBtn ({id}) {
   return (
     <Button
       title='Restart Quiz'
-      onPress={() => navigation.navigate('Quiz', {id:id})}>
+      onPress={() =>{
+        // this.setState({ansQ: 0, correct: 0 })
+        navigation.navigate('Quiz', {id:id})}}>
     </Button>
   )
 }
@@ -22,7 +24,6 @@ function BackToDeckBtn ({id}) {
     <Button
       title='Back to Deck'
       onPress={() => {
-        setState({ansQ: 0, correct: 0 })
         navigation.navigate('Deck', {id: id})}}>
     </Button>
   )
@@ -35,9 +36,9 @@ class QuizView extends Component {
   }
   render () {
     const { id, questions, nrQuestions } = this.props
-
+    console.log(this.props)
     return (
-      <View>
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         { (this.state.ansQ === nrQuestions) ?
           (<View>
             <Text style={{fontSize: 20 }}>correct: {this.state.correct} / {nrQuestions}</Text>
@@ -63,14 +64,12 @@ class QuizView extends Component {
         </View>)
         }
       </View>
-
     )
   }
 }
 function mapStateToProps(state, {id}) {
   const questions = state[id].questions
   const nrQuestions = state[id].questions.length
-
   return {
     id,
     questions,

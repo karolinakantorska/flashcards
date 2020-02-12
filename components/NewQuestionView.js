@@ -4,19 +4,16 @@ import { connect } from "react-redux";
 import { handleGetDeck} from '../actions/index'
 import { hadleSaveQuestion } from '../actions/index'
 
-
-
 class NewQuestionView extends Component {
   state = {
     question: '',
     answer: ''
   }
   render () {
-    // TODO remove navi
-    const { navigation } = this.props
     const { id, state } = this.props
+    console.log(id)
     return (
-      <View>
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <Text>{id}</Text>
         <Text>Add Question</Text>
           <TextInput

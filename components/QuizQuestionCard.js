@@ -10,7 +10,7 @@ class QuizQuestionCard extends Component {
 render () {
   const { toggleQuestionCard, Que } = this.props
   return (
-    <View>
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       {(this.state.question===true) ?
           (<View>
           <Text>{Que.question}</Text>

@@ -8,7 +8,7 @@ export default function IndividualDeckComponent ({ list }) {
   const cardsNr = list[1]
   if (cardsNr === 0) {
     return (
-      <View>
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <Text>Deck Title: {id}</Text>
         <Text>Number of Cards: {cardsNr}</Text>
         <Text>It's time to add some questions!</Text>
@@ -26,7 +26,7 @@ export default function IndividualDeckComponent ({ list }) {
   }
   else {
     return (
-      <View>
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <Text>Deck Title: { id }</Text>
         <Text>Number of Cards: { cardsNr }</Text>
         <Button

@@ -12,7 +12,7 @@ class NewDeckView extends Component {
   render () {
     const { navigation } = this.props
     return (
-      <View>
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <Text>Enter the title</Text>
           <TextInput
             style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
