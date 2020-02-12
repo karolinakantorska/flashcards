@@ -11,7 +11,6 @@ class NewQuestionView extends Component {
   }
   render () {
     const { id, state } = this.props
-    console.log(id)
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <Text>{id}</Text>

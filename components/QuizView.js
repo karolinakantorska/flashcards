@@ -4,19 +4,7 @@ import { connect } from "react-redux";
 import { useNavigation } from '@react-navigation/native'
 
 import QuizQuestionCard from './QuizQuestionCard'
-
-// TODO have to reload a component somehow
-function RestartQuizBtn ({id}) {
-  const navigation = useNavigation();
-  return (
-    <Button
-      title='Restart Quiz'
-      onPress={() =>{
-        // this.setState({ansQ: 0, correct: 0 })
-        navigation.navigate('Quiz', {id:id})}}>
-    </Button>
-  )
-}
+import { setLocalNotifications, clearLocalNotifications } from '../utils/helpers'
 
 function BackToDeckBtn ({id}) {
   const navigation = useNavigation();
@@ -30,19 +18,25 @@ function BackToDeckBtn ({id}) {
 }
 
 class QuizView extends Component {
+  componentDidMount () {
+    clearLocalNotifications().then(setLocalNotifications())
+  }
+
   state = {
     ansQ: 0,
     correct: 0
   }
   render () {
     const { id, questions, nrQuestions } = this.props
-    console.log(this.props)
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         { (this.state.ansQ === nrQuestions) ?
           (<View>
             <Text style={{fontSize: 20 }}>correct: {this.state.correct} / {nrQuestions}</Text>
-            <RestartQuizBtn id={id} />
+              <Button
+                title='Restart Quiz'
+                onPress={() =>
+                this.setState({ansQ: 0, correct: 0 })}/>
             <BackToDeckBtn id={id} />
           </View>
         )

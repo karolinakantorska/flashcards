@@ -7,18 +7,17 @@ class DeckListView extends Component {
   render () {
     const { state, list } = this.props
     const { navigation } =this.props
-    const id = list[0]
-    const cardsNr = list[1]
+
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <SafeAreaView style={styles.container}>
           <FlatList
             data= {list}
             renderItem = {({ item }) =>
-              <View>
-                <TouchableOpacity onPress={() => navigation.navigate('Deck', { list: [id, cardsNr] })} >
-                  <Text>Deck Title: { id }</Text>
-                  <Text>Number of Cards: {cardsNr}</Text>
+              <View >
+                <TouchableOpacity onPress={() => navigation.navigate('Deck', { list: [item[0], item[1]] })} >
+                  <Text>Deck Title: { item[0] }</Text>
+                  <Text>Number of Cards: {item[1]}</Text>
                 </TouchableOpacity>
               </View>
           }

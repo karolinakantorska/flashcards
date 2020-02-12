@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import { View, StyleSheet, Text, Button } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 
-export default function IndividualDeckComponent ({ list }) {
+export default function IndividualDeckComponent ( {list} ) {
   const navigation = useNavigation()
   const id = list[0]
   const cardsNr = list[1]

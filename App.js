@@ -8,6 +8,7 @@ import { Provider } from "react-redux";
 
 import reducer from "./reducers";
 import middleware from './middleware'
+import { setLocalNotifications } from './utils/helpers'
 
 import NewDeckView from './components/NewDeckView'
 import NewQuestionView from './components/NewQuestionView'
@@ -54,7 +55,9 @@ function HomeButton() {
 const Stack = createStackNavigator();
 
 class App extends React.Component {
-
+  componentDidMount () {
+    setLocalNotifications()
+  }
   render () {
     return (
       <Provider store={createStore(reducer, middleware)}>

@@ -4,7 +4,6 @@ import Menu from './Menu'
 import { handleSaveAnswer } from '../actions/shared'
 import {Redirect } from 'react-router-dom'
 
-
 class QuestionCard extends Component {
   state= {
     option: '',
