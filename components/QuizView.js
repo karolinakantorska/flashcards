@@ -20,7 +20,9 @@ function BackToDeckBtn ({id}) {
   return (
     <Button
       title='Back to Deck'
-      onPress={() => navigation.navigate('Deck', {id: id})}>
+      onPress={() => {
+        setState({ansQ: 0, correct: 0 })
+        navigation.navigate('Deck', {id: id})}}>
     </Button>
   )
 }

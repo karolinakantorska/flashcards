@@ -25,7 +25,7 @@ class NewDeckView extends Component {
             title="Submitt"
             onPress={() => {
               this.props.dispatch(hadleSaveDeck(this.state.text))
-              navigation.navigate('Deck', {id: this.state.text})
+              navigation.navigate('Deck', {list:[this.state.text, 0] })
               this.setState({text: ''})
             }}
             />

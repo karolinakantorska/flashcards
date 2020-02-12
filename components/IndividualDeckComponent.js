@@ -12,7 +12,6 @@ function AddQuestionBtn ({id}) {
       />
   )
 }
-
 function StartQuizBtn ({id}) {
   const navigation = useNavigation();
   return (
@@ -25,26 +24,43 @@ function StartQuizBtn ({id}) {
     </View>
   )
 }
-
 class IndividualDeckComponent extends Component {
   render () {
-    const {id, cardsNr }= this.props
+    const {id, cardsNr, list }= this.props
+    console.log(list)
+    console.log(id)
+    console.log(cardsNr)
+    if (cardsNr === 0){
     return (
       <View>
         <Text>Deck Title: { id }</Text>
         <Text>Number of Cards: { cardsNr }</Text>
+        <Text>It's time to add some questions!</Text>
         <AddQuestionBtn id={id} />
-        <StartQuizBtn id={id} />
+
       </View>
-    )
-  }
+    )}
+    else {
+      return (
+        <View>
+              <Text>Deck Title: { id }</Text>
+              <Text>Number of Cards: { cardsNr }</Text>
+              <AddQuestionBtn id={id} />
+              <StartQuizBtn id={id} />
+            </View>
+      )
+    }
+
+}
+
 }
 function mapStateToProps (state, { list }) {
-    const id = list.id
-    const cardsNr = list.cardsNr
+    const id = list[0]
+    const cardsNr = list[1]
     return {
     id,
     cardsNr,
+    list
   }
 }
 export default connect(mapStateToProps)(IndividualDeckComponent)
