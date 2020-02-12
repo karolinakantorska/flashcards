@@ -14,7 +14,7 @@ class DeckListView extends Component {
           <FlatList
             data={list}
             renderItem={({ item }) =>
-              <View>
+              <View style={styles.card}>
                 <TouchableOpacity onPress={() => navigation.navigate('Deck', { list: [item[0], item[1]] })}>
                   <Text>Deck Title: {item[0]}</Text>
                   <Text>Number of Cards: {item[1]}</Text>
@@ -54,11 +54,17 @@ export default connect(mapStateToProps)(DeckListView)
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 50
+    marginTop: 50,
+    marginBottom: 200,
   },
-  item: {
+  card: {
+    marginTop: 10,
     padding: 10,
     fontSize: 18,
-    height: 44,
+    backgroundColor: '#f0f5f5',
+    borderRadius: 5,
+    borderColor: '#394d00',
+    borderWidth: 1,
+
   },
 })

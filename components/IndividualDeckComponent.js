@@ -9,10 +9,13 @@ export default function IndividualDeckComponent ({ list }) {
   if (cardsNr === 0) {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Deck Title: {id}</Text>
-        <Text>Number of Cards: {cardsNr}</Text>
-        <Text>It's time to add some questions!</Text>
+        <View style={styles.card}>
+          <Text>Deck Title: {id}</Text>
+          <Text>Number of Cards: {cardsNr}</Text>
+          <Text>It's time to add some questions!</Text>
+        </View>
         <Button
+          style={styles.btnGreen}
           title='Add Card'
           onPress={() => navigation.navigate('AddQuestion', { id: id })}
         />
@@ -27,9 +30,12 @@ export default function IndividualDeckComponent ({ list }) {
   else {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Deck Title: {id}</Text>
-        <Text>Number of Cards: {cardsNr}</Text>
+        <View style={styles.card}>
+          <Text>Deck Title: {id}</Text>
+          <Text>Number of Cards: {cardsNr}</Text>
+        </View>
         <Button
+          style={styles.btnGreen}
           title='Add Card'
           onPress={() => navigation.navigate('AddQuestion', { id: id })}
         />
@@ -41,3 +47,24 @@ export default function IndividualDeckComponent ({ list }) {
     )
   }
 }
+const styles = StyleSheet.create({
+  btnGreen: {
+    backgroundColor: '#394d00',
+    padding: 10,
+    marginBottom: 40,
+    marginTop: 40,
+    fontSize: 50,
+  },
+  btnRed: {
+
+  },
+  card: {
+    marginBottom: 40,
+    padding: 10,
+    fontSize: 18,
+    backgroundColor: '#f0f5f5',
+    borderRadius: 5,
+    borderColor: '#394d00',
+    borderWidth: 1,
+  },
+})

@@ -12,7 +12,7 @@ render () {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       {(this.state.question===true) ?
-          (<View>
+          (<View style={styles.card}>
           <Text>{Que.question}</Text>
           <TextButon  onPress={() => this.setState({question: false})}>
             Show Answer
@@ -20,7 +20,7 @@ render () {
           </View>)
         :
           (<View>
-          <Text>{Que.answer}</Text>
+          <Text style={styles.card} >{Que.answer}</Text>
           <TextButon onPress={() => this.setState({question: true})}>
             Show Question
           </TextButon>
@@ -36,3 +36,16 @@ function mapStateToProps(state, {Que}) {
   }
 }
 export default QuizQuestionCard
+const styles = StyleSheet.create({
+  card: {
+    marginTop: 10,
+    marginBottom: 20,
+    padding: 10,
+    fontSize: 20,
+    backgroundColor: '#f0f5f5',
+    borderRadius: 5,
+    borderColor: '#394d00',
+    borderWidth: 1,
+
+  },
+})

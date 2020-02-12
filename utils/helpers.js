@@ -18,38 +18,35 @@ export function clearLocalNotifications () {
   .then(Notifications.chancelAllScheduledNotificationsAsync())
 }
 
-export function createLocalNotifications () {
+export function createlNotifications () {
   return {
     title: `Make a quiz today!`,
     body: `Don't forget to lern today!`
   }
 }
 
-export  function setLocalNotifications () {
+export function setLocalNotifications() {
   AsyncStorage.getItem(NOTIFICATIONS_KEY)
     .then(JSON.parse)
-    .then((data) => {
+    .then(data => {
       if (data === null) {
-         Permissions.askAsync(Permissions.NOTIFICATIONS)
-        .then(( status ) => {
-          if ( status === 'granted') {
-            Notifications.chancelAllScheduledNotificationsAsync()
+        Permissions.askAsync(Permissions.NOTIFICATIONS).then(({ status }) => {
+          if (status === "granted") {
+            Notifications.cancelAllScheduledNotificationsAsync();
 
-            let tomorrow = new Date()
-            tomorrow.setDate(tomorrow.getDate() + 1)
-            tommorow.setHours(20)
-            tomorrow.setMinutes(0)
+            let tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            tomorrow.setHours(20);
+            tomorrow.setMinutes(0);
 
-            Notifications.scheduleLocalNotificationsAsync(
-              createLocalNotifications(),
-              {
-                time: tomorrow,
-                repeat: 'day'
-              }
-            )
-            AsyncStorage.setItem(NOTIFICATIONS_KEY, JSON.stringify(true))
+            Notifications.scheduleLocalNotificationAsync(createNotification(), {
+              time: tomorrow,
+              repeat: "day"
+            });
+
+            AsyncStorage.setItem(NOTIFICATIONS_KEY, JSON.stringify(true));
           }
-        })
+        });
       }
-    })
+    });
 }
