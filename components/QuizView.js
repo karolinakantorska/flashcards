@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import { View, StyleSheet, Text, Button } from 'react-native'
 import { connect } from "react-redux";
 import { useNavigation } from '@react-navigation/native'
+
 import QuizQuestionCard from './QuizQuestionCard'
 
 // TODO have to reload a component somehow
@@ -34,6 +35,7 @@ class QuizView extends Component {
   }
   render () {
     const { id, questions, nrQuestions } = this.props
+
     return (
       <View>
         { (this.state.ansQ === nrQuestions) ?
@@ -67,7 +69,6 @@ class QuizView extends Component {
 }
 function mapStateToProps(state, {id}) {
   const questions = state[id].questions
-
   const nrQuestions = state[id].questions.length
 
   return {

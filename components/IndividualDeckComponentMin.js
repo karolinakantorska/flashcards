@@ -4,12 +4,13 @@ import { useNavigation } from '@react-navigation/native'
 
 export default function IndividualDeckComponentMin ({list}) {
   const navigation = useNavigation();
-  const id = list.id
+  const id = list[0]
+  const cardsNr = list[1]
     return (
       <View>
-        <TouchableOpacity onPress={() => navigation.navigate('Deck', {list:list })} >
-          <Text>Deck Title: { list.id }</Text>
-          <Text>Number of Cards: {list.cardsNr}</Text>
+        <TouchableOpacity key={id} onPress={() => navigation.navigate('Deck', {list:[id, cardsNr] })} >
+          <Text>Deck Title: { id }</Text>
+          <Text>Number of Cards: {cardsNr}</Text>
         </TouchableOpacity>
       </View>
     )

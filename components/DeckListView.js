@@ -29,17 +29,15 @@ function navigating (id) {
   )
 }
 class DeckListView extends Component {
-  // componentDidMount() {
-  //   // this.props.dispatch(handleInitialData())
-  // }
   render () {
-    const { ID, state, list } = this.props
+    const { state, list } = this.props
     return (
       <View>
       <SafeAreaView style={styles.container}>
           <FlatList
             data= {list}
-            renderItem = {({ item }) =><IndividualDeckComponentMin list={item} key ={item.id} />}
+            renderItem = {({ item }) =><IndividualDeckComponentMin list={item} />}
+            keyExtractor={item => item[0]}
             />
           <AddDeckBtn />
           <DeleteDeckBtn />
@@ -52,20 +50,18 @@ function mapStateToProps (state) {
   const ID = Object.keys(state)
   const list = ID.map((id) => {
     const cardsNr = state[id].questions.length
-    return {
+    return [
       id,
       cardsNr,
-    }
+    ]
   })
   return{
-    ID,
     state,
     list
   }
 }
 export default connect(mapStateToProps)(DeckListView)
 
-// styling
 const styles = StyleSheet.create({
   container: {
     flex: 1,
