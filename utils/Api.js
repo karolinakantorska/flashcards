@@ -13,18 +13,18 @@ export const _getDecks = async () => {
   }
 };
 
-export const _saveInitialDeck = async (DECKS_KEY, deck) => {
-  const decksToStore = {
-    [deck]: {
-      questions: []
-    }
-  };
-  try {
-    await AsyncStorage.setItem(DECKS_KEY, JSON.stringify(decksToStore));
-  } catch (error) {
-    console.log("Error saving  initial deck", error);
-  }
-};
+// export const _saveInitialDeck = async (DECKS_KEY, deck) => {
+//   const decksToStore = {
+//     [deck]: {
+//       questions: []
+//     }
+//   };
+//   try {
+//     await AsyncStorage.setItem(DECKS_KEY, JSON.stringify(decksToStore));
+//   } catch (error) {
+//     console.log("Error saving  initial deck", error);
+//   }
+// };
 // saveDeckTitle: take in a single title argument and add it to the decks.
 export const _saveDeck = async deck => {
   const decksToStore = {
@@ -40,7 +40,7 @@ export const _saveDeck = async deck => {
   }
 };
 
-export const _saveQuestion = async (DECKS_KEY, deckQuestion) => {
+export const _saveQuestion = async deckQuestion => {
   const { id, answer, question } = deckQuestion;
   const deck = id;
   try {

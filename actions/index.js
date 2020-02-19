@@ -68,7 +68,7 @@ export function hadleSaveDeck(id) {
 export function hadleSaveQuestion(id, answer, question) {
   return dispatch => {
     dispatch(addQuestion(id, answer, question));
-    return _saveQuestion("decks", { id, answer, question }).then(() => {
+    return _saveQuestion({ id, answer, question }).then(() => {
       dispatch(addQuestion(id, answer, question));
     });
   };
