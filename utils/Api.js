@@ -4,9 +4,10 @@ import { AsyncStorage } from "react-native";
 const DECKS_KEY = "flashcards:decks";
 
 // getDecks: return all of the decks along with their titles, questions, and answers.
-export const _getDecks = async DECKS_KEY => {
+export const _getDecks = async () => {
   try {
-    return await AsyncStorage.getItem(DECKS_KEY);
+    let decks = await AsyncStorage.getItem(DECKS_KEY);
+    return JSON.parse(decks);
   } catch (error) {
     console.log("Error retrieving data:", error);
   }

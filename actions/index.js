@@ -10,6 +10,19 @@ export const ADD_DECK = "ADD_DECK";
 export const ADD_QUESTION = "ADD_QUESTION";
 export const RECEIVE_DECK = "RECEIVE_DECK";
 
+export function handleInitialData() {
+  return dispatch => {
+    // return "AAA";
+    return _getDecks().then(decks => {
+      console.log("Retrieving decks from Async: ", decks);
+      dispatch(receiveDeck(decks));
+    });
+  };
+  // return {
+  //   type: "AAAA"
+  // };
+}
+
 export function receiveDecks() {
   return {
     type: RECEIVE_DECKS
