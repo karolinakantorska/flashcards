@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { View, Text, Button } from 'react-native'
+import { View, Text, Button, AsyncStorage } from 'react-native'
 import { NavigationContainer, useNavigation } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 
@@ -16,6 +16,8 @@ import DeckListView from './components/DeckListView'
 import IndividualDeckComponent from './components/IndividualDeckComponent'
 import QuizView from './components/QuizView'
 import QuizQuestionCard from './components/QuizQuestionCard'
+
+
 
 function AddQuestion ({ route, navigation }) {
   const { id } = route.params
@@ -50,11 +52,14 @@ function HomeButton () {
 const Stack = createStackNavigator()
 
 class App extends React.Component {
+
   componentDidMount () {
-    setLocalNotifications()
-  }
+    // setLocalNotifications()
+
+     }
 
   render () {
+
     return (
       <Provider store={createStore(reducer, middleware)}>
         <NavigationContainer>

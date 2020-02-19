@@ -3,6 +3,8 @@ import { SafeAreaView, View, StyleSheet, FlatList, Text, Button, TouchableOpacit
 import { useNavigation } from '@react-navigation/native'
 import { connect } from 'react-redux';
 
+import { _clearData } from '../utils/Api'
+
 class DeckListView extends Component {
   render () {
     const { state, list } = this.props
@@ -27,8 +29,8 @@ class DeckListView extends Component {
             onPress={() => navigation.navigate('AddDeck')}
           />
           <Button
-            title='Delete Deck'
-            disabled
+            title='Delete AsyncStorage'
+            onPress={() => _clearData()}
           />
         </SafeAreaView>
       </View>
@@ -55,7 +57,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: 50,
-    marginBottom: 200,
+    marginBottom: 50,
   },
   card: {
     marginTop: 10,

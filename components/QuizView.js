@@ -19,9 +19,9 @@ function BackToDeckBtn ({id}) {
 }
 
 class QuizView extends Component {
-  componentDidMount () {
-    clearLocalNotifications().then(setLocalNotifications())
-  }
+  // componentDidMount () {
+  //   clearLocalNotifications().then(setLocalNotifications())
+  // }
 
   state = {
     ansQ: 0,

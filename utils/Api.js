@@ -1,32 +1,71 @@
 import React from 'react';
 import { AsyncStorage } from 'react-native';
 
-const DECK = 'deck'
+const DECKS_KEY = 'flashcards:decks'
 
 // getDecks: return all of the decks along with their titles, questions, and answers.
-export const _getDecks = () => {
-
+export const _getDecks = async DECKS_KEY => {
+  try {
+    return await AsyncStorage.getItem(DECKS_KEY)
+  } catch (error) {
+    console.log("Error retrieving data:", error)
+  }
 }
 
+
+export const _saveInitialDeck = async (DECKS_KEY, deck) => {
+  const decksToStore = {
+    [deck]: {
+      questions: []
+    }
+  }
+  try {
+    await AsyncStorage.setItem(DECKS_KEY, JSON.stringify(decksToStore))
+  } catch (error) {
+    console.log('Error saving  initial deck', error)
+  }
+}
 // saveDeckTitle: take in a single title argument and add it to the decks.
-export const _saveDeckTitle = async id => {
+export const _saveDeck = async (DECKS_KEY, deck) => {
+  const decksToStore = {
+    [deck]: {
+      questions: []
+    }
+  }
   try {
-    await AsyncStorage.setItem('deck', id)
+    await AsyncStorage.mergeItem(DECKS_KEY, JSON.stringify(decksToStore))
   } catch (error) {
-    console.log(error.message)
+    console.log('Error saving deck', error)
   }
 }
 
-// getDeck: take in a single id argument and return the deck associated with that id.
-export const _getDeck = async () => {
-  let deck = ''
+export const _saveQuestion = async (DECKS_KEY, deckQuestion) => {
+  const {id, answer, question} = deckQuestion
+  const deck = id
   try {
-    deck = await AsyncStorage.getItem('deck')
+    const existing = await _getDeck(id)
+    console.log('existing: ', existing)
+    await AsyncStorage.mergeItem(
+      DECKS_KEY,
+      JSON.stringify({
+         [deck]: {
+           questions: [].concat({question, answer})
+         }
+       })
+     ).then(console.log('existing: ' + existing))
   } catch (error) {
-    console.log(error.message)
+    console.log('Error saving deck', error)
   }
-  return deck
 }
-// addCardToDeck: take in two arguments, title and card, and will add the card to the list of questions for the deck with the associated title.
-export function addCardToDeck (title, card) {
-}
+
+// export const _getDeck = async (DECKS_KEY, id) => {
+//   try {
+//     const storeResults = await AsyncStorage.getItem(DECKS_KEY);
+//     return JSON.parse(storeResults)[id];
+//   } catch (err) {
+//     console.log(err);
+//   }
+// }
+
+
+export const _clearData = () => AsyncStorage.clear();

@@ -2,15 +2,29 @@ import React, { Component } from 'react'
 import { View, StyleSheet, Text, Button, TextInput } from 'react-native'
 import { connect } from 'react-redux'
 
-import { hadleSaveDeck } from '../actions/index'
+import { hadleSaveInitialDeck, hadleSaveDeck } from '../actions/index'
+import { _getDecks,  } from '../utils/Api'
 
 class NewDeckView extends Component {
+  componentDidMount () {
+    // setLocalNotifications()
+    _getDecks('decks').then(decksInAsyncStorage => {
+         decksInAsyncStorage = JSON.parse(decksInAsyncStorage);
+         if (decksInAsyncStorage !== null) {
+           this.setState({deck: true})
+         }
+         console.log("Decks in AsyncStorage: ", decksInAsyncStorage);
+       })
+     }
+
   state = {
+
     text: '',
+    deck: false,
   }
 
   render () {
-    const { navigation } = this.props
+    const { navigation, savedeck } = this.props
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <Text>Enter the title</Text>
@@ -24,10 +38,15 @@ class NewDeckView extends Component {
           <Button
             title='Submitt'
             onPress={() => {
-              this.props.dispatch(hadleSaveDeck(this.state.text))
-              navigation.navigate('Deck', {list:[this.state.text, 0] })
-              this.setState({text: ''})
-            }}
+              if (this.state.deck){
+                  this.props.dispatch(hadleSaveDeck(this.state.text))
+              }
+              else {
+                  this.props.dispatch(hadleSaveInitialDeck(this.state.text))
+              }
+               navigation.navigate('Deck', {list:[this.state.text, 0] })
+               this.setState({text: ''})
+             }}
             />
       </View>
     )

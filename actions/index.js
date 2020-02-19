@@ -1,3 +1,5 @@
+import { _saveInitialDeck, _saveDeck, _getDecks, _saveQuestion } from '../utils/Api'
+
 export const RECEIVE_DECKS = 'RECEIVE_DECKS'
 export const ADD_DECK = 'ADD_DECK'
 export const ADD_QUESTION = 'ADD_QUESTION'
@@ -15,6 +17,7 @@ export function addDeck (id) {
   }
 }
 
+
 export function addQuestion (id, answer, question) {
   return {
     type: ADD_QUESTION,
@@ -30,29 +33,32 @@ export function receiveDeck (id) {
   }
 }
 
-export function handleInitialData () {
+
+export function hadleSaveInitialDeck (id) {
   return (dispatch) => {
-    // return _getDecks()
-    // .then((decks) =>  {
-    dispatch(receiveDecks())
-    // })
+    return _saveInitialDeck('decks', id)
+      .then(() => { dispatch(addDeck(id))
+      })
   }
 }
 export function hadleSaveDeck (id) {
   return (dispatch) => {
-    // return _saveDeckTitle({
-    //   id
-    // })
-    // .then((id) => {
-    dispatch(addDeck(id))
-    // })
+    return _saveDeck('decks', id)
+      .then(() => { dispatch(addDeck(id))
+      })
   }
 }
+
+
 export function hadleSaveQuestion (id, answer, question) {
   return (dispatch) => {
     dispatch(addQuestion(id, answer, question))
-  }
+    return _saveQuestion('decks', {id, answer, question})
+    .then(() => {dispatch(addQuestion(id, answer, question))
+    })
+   }
 }
+
 export function handleGetDeck (id) {
   return (dispatch) => {
     // return _getDeck({
@@ -63,3 +69,10 @@ export function handleGetDeck (id) {
     // })
   }
 }
+// export function hadleSaveDeck (id) {
+//   return (dispatch) => {
+//     return _saveInitialDeck('decks', id)
+//       .then((id) => { dispatch(addDeck(id))
+//       })
+//   }
+// }
