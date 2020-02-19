@@ -1,73 +1,75 @@
-import { _saveInitialDeck, _saveDeck, _getDecks, _saveQuestion } from '../utils/Api'
+import {
+  _saveInitialDeck,
+  _saveDeck,
+  _getDecks,
+  _saveQuestion
+} from "../utils/Api";
 
-export const RECEIVE_DECKS = 'RECEIVE_DECKS'
-export const ADD_DECK = 'ADD_DECK'
-export const ADD_QUESTION = 'ADD_QUESTION'
-export const RECEIVE_DECK = 'RECEIVE_DECK'
+export const RECEIVE_DECKS = "RECEIVE_DECKS";
+export const ADD_DECK = "ADD_DECK";
+export const ADD_QUESTION = "ADD_QUESTION";
+export const RECEIVE_DECK = "RECEIVE_DECK";
 
-export function receiveDecks () {
+export function receiveDecks() {
   return {
     type: RECEIVE_DECKS
-  }
+  };
 }
-export function addDeck (id) {
+export function addDeck(id) {
   return {
     type: ADD_DECK,
     id
-  }
+  };
 }
 
-
-export function addQuestion (id, answer, question) {
+export function addQuestion(id, answer, question) {
   return {
     type: ADD_QUESTION,
     id,
     answer,
     question
-  }
+  };
 }
-export function receiveDeck (id) {
+export function receiveDeck(id) {
   return {
     type: RECEIVE_DECK,
     id
-  }
+  };
 }
 
-
-export function hadleSaveInitialDeck (id) {
-  return (dispatch) => {
-    return _saveInitialDeck('decks', id)
-      .then(() => { dispatch(addDeck(id))
-      })
-  }
+export function hadleSaveInitialDeck(id) {
+  return dispatch => {
+    return _saveInitialDeck("decks", id).then(() => {
+      dispatch(addDeck(id));
+    });
+  };
 }
-export function hadleSaveDeck (id) {
-  return (dispatch) => {
-    return _saveDeck('decks', id)
-      .then(() => { dispatch(addDeck(id))
-      })
-  }
-}
-
-
-export function hadleSaveQuestion (id, answer, question) {
-  return (dispatch) => {
-    dispatch(addQuestion(id, answer, question))
-    return _saveQuestion('decks', {id, answer, question})
-    .then(() => {dispatch(addQuestion(id, answer, question))
-    })
-   }
+export function hadleSaveDeck(id) {
+  return dispatch => {
+    return _saveDeck(id).then(() => {
+      dispatch(addDeck(id));
+    });
+  };
 }
 
-export function handleGetDeck (id) {
-  return (dispatch) => {
+export function hadleSaveQuestion(id, answer, question) {
+  return dispatch => {
+    dispatch(addQuestion(id, answer, question));
+    return _saveQuestion("decks", { id, answer, question }).then(() => {
+      dispatch(addQuestion(id, answer, question));
+    });
+  };
+}
+
+export function handleGetDeck(id) {
+  return dispatch => {
     // return _getDeck({
     //   id
     // })
     // .then(() => {
-    dispatch(receiveDeck(id))
+    dispatch(receiveDeck(id));
     // })
-  }
+  };
 }
 // export function hadleSaveDeck (id) {
 //   return (dispatch) => {
